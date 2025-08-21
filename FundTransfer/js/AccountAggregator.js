@@ -134,7 +134,7 @@ async function doPaymentInitiation(token, accountNumber, accountName, amount, cu
     console.log("doPaymentInitiation body ", body);
 
     try {
-        const response = await fetch("http://localhost:9090/xs2a/v1/payments", {
+        const response = await fetch("http://localhost:9090/xs2a/v1/paymentConsents", {
             method: "POST",
             body: JSON.stringify(body),
             headers: {
@@ -151,8 +151,8 @@ async function doPaymentInitiation(token, accountNumber, accountName, amount, cu
 
         const json = await response.json();
         console.log(json);
-        console.log("paymentId", json.paymentId);
-        return json.paymentId;
+        console.log("paymentId", json.Data.consentId);
+        return jjson.Data.consentId;
     } catch (error) {
         console.error(error.message);
     }
@@ -192,7 +192,7 @@ async function getPaymentAuthURL(consentId) {
                 'consentID': consentId,
                 'clientID': 'J8KGGr7P8sPF8FU801wbfpLd0EUa',
                 'redirectUrl': 'http://localhost:9090/xs2a/v1/callback',
-                'scope': 'pis:' + consentId,
+                'scope': 'payments openid',
             },
         });
         if (!response.ok) {

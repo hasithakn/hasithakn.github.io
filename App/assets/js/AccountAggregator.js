@@ -28,6 +28,7 @@ async function doAccount() {
 }
 
 window.addEventListener('load', function(event) {
+        console.log("event", event);
         console.log("Fetch event for ", event.request.url);
         if (event.request.url.includes('/xs2a/v1/callback')) {
             // Intercept and handle the request for '/specific-page'

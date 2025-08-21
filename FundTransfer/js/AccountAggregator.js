@@ -183,7 +183,7 @@ async function doPaymentInitiation(token, accountNumber, accountName, amount, cu
         const json = await response.json();
         console.log(json);
         console.log("paymentId", json.Data.ConsentId);
-        return jjson.Data.consentId;
+        return json.Data.consentId;
     } catch (error) {
         console.error(error.message);
     }

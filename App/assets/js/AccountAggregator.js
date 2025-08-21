@@ -79,22 +79,17 @@ async function doAccInitiation(token) {
     console.log("doAccInitiation");
 
     const body = {
-        access: {
-            accounts: [
-
-            ],
-            balances: [
-
-            ],
-            transactions: [
-
-            ]
-        },
-        recurringIndicator: true,
-        validUntil: "2025-12-03",
-        frequencyPerDay: 4,
-        combinedServiceIndicator: false
-    }
+            "Data": {
+                "Permissions": [
+                "ReadAccountsDetail",
+                "ReadBalances"
+                ],
+                "ExpirationDateTime": "2026-06-03T00:00:00+00:00",
+                "TransactionFromDateTime": "2021-05-03T00:00:00+00:00",
+                "TransactionToDateTime": "2021-12-03T00:00:00+00:00"
+            },
+            "Risk": {}
+            }
     console.log("doAccInitiation body ", body);
 
     try {

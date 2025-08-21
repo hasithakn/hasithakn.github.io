@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" class="bank">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="WSO2">
+
+    <title></title>
+
+    <link rel="stylesheet" href="assets/bootstrap-4.0.0/css/bootstrap.min.css" id="bootstrap" disabled="true">
+    <link rel="stylesheet" href="assets/font-wso2-1.3.0/css/font-wso2.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
+    <link rel="stylesheet" href="" id="theme">
+</head>
+
+<body style="display: none;">
+
+    <div class="page-content-wrapper">
+        <div class="container">
+
+            <div class="login-form-wrapper">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="brand-container add-margin-bottom-5x">
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <img src="" class="logo">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 login">
+                        <div class="data-container">
+                            <form class="form-horizontal" id="mainLoginForm" autocomplete="off">
+                                <h3><strong>Aggregator</strong> is requesting permission to perform following payment.
+                                </h3>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <div class="card card-body bg-light">
+                                            Perfomring payment through :
+                                            <input type="text" id="payment_bank" name="payment_bank"
+                                                title="payment_bank" class="form-control">
+                                            <label class="control-label">Select account(s):</label>
+                                            <div class="form-check">
+                                                <input type="checkbox" value="" checked>
+                                                <label>3804 0074 0532 0130 0032 <span class="text-muted">- Savings
+                                                        Account (Pro-Saver)</span></label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input type="checkbox" value="">
+                                                <label>3675 9334 3432 3456 1232 <span class="text-muted">- Current
+                                                        Account (Advance)</span></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <p>Beneficiary Bank</p>
+                                        <input type="text" id="beneficiary_bank" name="beneficiary_bank"
+                                            title="beneficiary_bank" class="form-control" placeholder="Bank Name">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <p>Beneficiary Account Number</p>
+                                        <input type="text" id="beneficiary_acc_number" name="beneficiary_acc_number"
+                                            title="beneficiary_acc_number" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <p>Beneficiary Account Name</p>
+                                        <input type="text" id="beneficiary_acc_name" name="beneficiary_acc_name"
+                                            title="beneficiary_acc_name" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <p>Amount and Curreny</p>
+                                        <input type="text" id="amount" name="amount" title="amount"
+                                            class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <a href="../dashboard.html?bank=7" class="btn btn-primary"
+                                            role="main-action">Allow</a>
+                                        <a href="../dashboard.html?bank=9" class="btn btn-secondary"
+                                            role="main-action">Deny</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="footer">
+                <div class="container-fluid">
+                    <p><span class="bank-name"></span> | ©
+                        <script>document.write(new Date().getFullYear());</script> Powered by <a title="WSO2"
+                            href="http://wso2.com/" target="_blank"><i class="icon fw fw-wso2"></i></a> Open Banking
+                    </p>
+                </div>
+            </footer>
+
+        </div>
+    </div>
+
+    <script src="assets/jquery-3.2.1/jquery-3.2.1.min.js"></script>
+    <script src="assets/popperjs-1.11.0/popper.min.js"></script>
+    <script src="assets/bootstrap-4.0.0/js/bootstrap.min.js"></script>
+    <script src="js/demos.js"></script>
+    <script>
+        window.parent.$("#demo-desc").html('After verifying your authenticity, you are asked to provide consent to proceed with the transaction.');
+        window.parent.$("iframe#mobile-content").attr('data-prevsrc', 'demos/pisp_demo/bank_otp.html');
+
+        window.onload = function () {
+            var own_bank = window.sessionStorage.getItem("payment_bank");
+            console.log("payment_bank", payment_bank);
+            var payment_bankName = window.sessionStorage.getItem("payment_bankName");
+            var payment_accountNumber = window.sessionStorage.getItem("payment_accountNumber");
+            var payment_accountName = window.sessionStorage.getItem("payment_accountName");
+            var payment_amount = window.sessionStorage.getItem("payment_amount");
+            var payment_currency = window.sessionStorage.getItem("payment_currency");
+
+            var payment_bank = document.getElementById("payment_bank");
+            payment_bank.value = own_bank;
+            var beneficiary_bank = document.getElementById("beneficiary_bank");
+            beneficiary_bank.value = payment_bankName;
+            var beneficiary_acc_number = document.getElementById("beneficiary_acc_number");
+            beneficiary_acc_number.value = payment_accountNumber;
+            var beneficiary_acc_name = document.getElementById("beneficiary_acc_name");
+            beneficiary_acc_name.value = payment_accountName;
+            var amount = document.getElementById("amount");
+            amount.value = payment_amount + " " + payment_currency;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,171 @@
+<!--/
+* Copyright (c) 2017, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+*
+* WSO2 Inc. licenses this file to you under the Apache License,
+* Version 2.0 (the "License"); you may not use this file except
+* in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing,
+* software distributed under the License is distributed on an
+* "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+* KIND, either express or implied.  See the License for the
+* specific language governing permissions and limitations
+* under the License.
+*
+/-->
+
+<html lang="en" data-reactroot="" data-react-checksum="-297169327">
+
+<head>
+    <meta />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Account Aggregator</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link type="text/css" rel="stylesheet" href="App/assets/css/materialize.min.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="App/assets/css/chartist.min.css" media="screen,projection" />
+    <link rel="stylesheet" type="text/css" href="App/assets/css/style.css" media="screen,projection" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600" rel="stylesheet" />
+    <link rel="stylesheet" href="App/assets/css/font-wso2.css" />
+
+    <script type="text/javascript" src="App/assets/js/compiled/chartist.min.js"></script>
+    <script src="App/assets/js/compiled/jquery.min.js"></script>
+    <script type="text/javascript" src="App/assets/js/compiled/materialize.min.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
+    <script type="text/javascript" src="App/assets/js/compiled/nv.d3.min.js"></script>
+    <script type="text/javascript" src="App/assets/js/compiled/moment.min.js"></script>
+</head>
+
+<body class="containerBG">
+    <div id="app">
+        <div>
+            <div>
+                <nav id="navigator">
+                    <div class="nav-wrapper teal">
+                        <div id="titleContainer1" class="hide-on-small-and-down">
+                            <img src="App/assets/images/logo2.png" class="logo2">
+                        </div>
+
+                        <div id="titleContainer2" class="hide-on-med-and-up">
+                            <a class="brand-logo left" id="logos2">
+                                <i class="fw fw-add" style="float: none"></i>
+                                Add Banks
+                            </a>
+                        </div>
+
+                        <!--<ul class="right navigatorIcons">
+                        <li id="addbank" class="teal modal-trigger ">
+                            <a href="index.html" class="tooltipped" data-position="bottom" data-delay="10"
+                               data-tooltip="Logout">
+                                <i class="fw fw-activate"></i>
+                            </a>
+                        </li>
+                    </ul>-->
+                    </div>
+                </nav>
+
+                <div class="container widthShrink">
+                    <div>
+                        <div class="row col s6  offset-s6  transparent add-bank-pane {/*card-panel*/}">
+                            <div id="bankPane">
+                                <div class="padding15">
+                                    <h3 class="blue-grey-text flow-text text-darken-4 left-align">
+                                        Please select the Fund Transfer Type
+                                    </h3>
+                                    <div class="row">
+                                    </div>
+                                    <div id="fundTypeList" class="row">
+                                        <div class="col s12 m3 cardContainer">
+                                            <a id="bank1" href="FundTransfer/fundTransfer.html">
+                                                <div class="card teal white cardBox" id="card1">
+                                                    <i
+                                                        class="fw fw-add fw-lg fw-inverse fw-helper fw-helper-circle add-icon"></i>
+                                                    <div class="card-image">
+                                                        <img src="App/assets/images/lorembank_logo3.png" />
+                                                        <div class="row">
+                                                            <h6 class="card-text card-title blue-grey-text text-darken-4 center-align bankCardTitle"
+                                                                style="width: 100%">
+                                                                Own Account Transfer
+                                                            </h6>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col s12 m3 cardContainer">
+                                            <a id="bank1" href="FundTransfer/withinBankFundTransfer.html">
+                                                <div class="card teal white cardBox" id="card1">
+                                                    <i
+                                                        class="fw fw-add fw-lg fw-inverse fw-helper fw-helper-circle add-icon"></i>
+                                                    <div class="card-image">
+                                                        <img src="App/assets/images/lorembank_logo3.png" />
+                                                        <div class="row">
+                                                            <h6 class="card-text card-title blue-grey-text text-darken-4 center-align bankCardTitle"
+                                                                style="width: 100%">
+                                                                Within Bank Transfer
+                                                            </h6>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col s12 m3 cardContainer">
+                                            <a id="bank1" href="FundTransfer/localBankFundTransfer.html">
+                                                <div class="card teal white cardBox" id="card1">
+                                                    <i
+                                                        class="fw fw-add fw-lg fw-inverse fw-helper fw-helper-circle add-icon"></i>
+                                                    <div class="card-image">
+                                                        <img src="App/assets/images/lorembank_logo3.png" />
+                                                        <div class="row">
+                                                            <h6 class="card-text card-title blue-grey-text text-darken-4 center-align bankCardTitle"
+                                                                style="width: 100%">
+                                                                Other Local Bank Transfer
+                                                            </h6>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col s12 m3 cardContainer">
+                                        <a id="bank1" href="FundTransfer/crossBorderFundTransfer.html">
+                                            <div class="card teal white cardBox" id="card1">
+                                                <i
+                                                    class="fw fw-add fw-lg fw-inverse fw-helper fw-helper-circle add-icon"></i>
+                                                <div class="card-image">
+                                                    <img src="App/assets/images/lorembank_logo3.png" />
+                                                    <div class="row">
+                                                        <h6 class="card-text card-title blue-grey-text text-darken-4 center-align bankCardTitle"
+                                                            style="width: 100%">
+                                                            Cross Boarder Bank Transfer
+                                                        </h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <!-- <hr> -->
+                                <div class="row">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <script>
+        window.parent.$("#demo-desc").html('All banks supported by AISP application will be shown here. Assume you have a bank account in one of these banks. Click on a bank to initiate linking process');
+        // window.parent.$("iframe#mobile-content").attr('data-prevsrc',  'demos/pisp_demo/shoppingcart.html');
+    </script>
+
+
+</body>
+
+</html>

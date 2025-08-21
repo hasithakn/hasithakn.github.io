@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" class="bank">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="WSO2">
+
+    <title></title>
+
+    <link rel="stylesheet" href="assets/bootstrap-4.0.0/css/bootstrap.min.css" id="bootstrap" disabled="true">
+    <link rel="stylesheet" href="assets/font-wso2-1.3.0/css/font-wso2.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
+    <link rel="stylesheet" href="" id="theme">
+
+    <script type="text/javascript" src="/FundTransfer/js/AccountAggregator.js"></script>
+</head>
+
+<body style="display: none;">
+
+    <div class="page-content-wrapper">
+        <div class="container">
+
+            <div class="login-form-wrapper">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="brand-container add-margin-bottom-5x">
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <h3>Within Bank Fund Transfer</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 login">
+                        <div class="data-container">
+                            <form class="form-horizontal" id="mainLoginForm" autocomplete="off">
+                                <div class="row">
+                                    <h3>Choose a bank: </h3>
+
+                                    <select name="ft_bank" id="ft_bank">
+                                        <option value="select_bank">Select Your Bank</option>
+                                        <option value="citizen_bank">Citizen Bank</option>
+                                        <option value="eudc_bank">EUDC Bank</option>
+                                        <option value="development_bank">Development Bank</option>
+                                    </select>
+                                </div>
+                                <h3>Pay To</h3>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <div class="input-group input-wrap">
+                                            <input type="text" autocomplete="off" id="ft_accountNumber"
+                                                name="ft_accountNumber" title="ft_accountNumber" class="form-control"
+                                                placeholder="Account Number">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <div class="input-group input-wrap">
+                                            <input type="text" autocomplete="off" id="ft_accountName"
+                                                name="ft_accountName" title="ft_accountName" class="form-control"
+                                                placeholder="Account Name">
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <h3>Amount</h3>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <div class="input-group input-wrap">
+                                            <input type="number" id="ft_amount" name="ft_amount" title="ft_amount"
+                                                class="form-control" placeholder="Amount">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <div class="input-group input-wrap">
+                                            <input type="text" id="ft_currency" name="ft_currency" title="ft_currency"
+                                                class="form-control" placeholder="Currency">
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="hidden" id="tenant" name="tenant" value="null">
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <a class="btn btn-primary" role="main-action" onclick="doTransfer()">Transfer
+                                            Now</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="footer">
+                <div class="container-fluid">
+                    <p> ©
+                        <script>document.write(new Date().getFullYear());</script> Powered by <a title="WSO2"
+                            href="http://wso2.com/" target="_blank"><i class="icon fw fw-wso2"></i></a> Open Banking
+                    </p>
+                </div>
+            </footer>
+
+        </div>
+    </div>
+
+    <script src="assets/jquery-3.2.1/jquery-3.2.1.min.js"></script>
+    <script src="assets/popperjs-1.11.0/popper.min.js"></script>
+    <script src="assets/bootstrap-4.0.0/js/bootstrap.min.js"></script>
+    <script src="js/demos.js"></script>
+    <script>
+        // window.parent.$('#demo-desc').html('Once you select a bank, the AISP makes a account initiation request to the bank. The selected bank then prompts you to log in.');
+        // window.parent.$("iframe#mobile-content").attr('data-prevsrc', 'demos/pisp_demo/directpay.html')
+
+        function doTransfer() {
+            console.log("doTransfer");
+            var ft_bank = document.getElementById('ft_bank').value;
+            var ft_accountNumber = document.getElementById('ft_accountNumber').value;
+            var ft_accountName = document.getElementById('ft_accountName').value;
+            var ft_amount = document.getElementById('ft_amount').value;
+            var ft_currency = document.getElementById('ft_currency').value;
+
+            doPayment(ft_bank, ft_accountNumber, ft_accountName, ft_amount, ft_currency);
+        }
+    </script>
+</body>
+
+</html>

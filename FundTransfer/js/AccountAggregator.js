@@ -124,8 +124,8 @@ async function doPaymentInitiation(token, accountNumber, accountName, amount, cu
                 "EndToEndIdentification":"FRESCO.21302.GFX.20",
                 "LocalInstrument": "UK.OBIE.BACS",
                 "InstructedAmount":{ 
-                    "Amount":"300.65",
-                    "Currency":"GBP"
+                    "Amount":amount,
+                    "Currency":currency
                 },
                 "DebtorAccount": {
                     "SchemeName": "UK.OBIE.SortCodeAccountNumber",
@@ -135,8 +135,8 @@ async function doPaymentInitiation(token, accountNumber, accountName, amount, cu
                 },
                 "CreditorAccount":{ 
                     "SchemeName":"UK.OBIE.SortCodeAccountNumber",
-                    "Identification":"08080021325698",
-                    "Name":"ACME Inc",
+                    "Identification":accountNumber,
+                    "Name":accountName,
                     "SecondaryIdentification":"0002"
                 },
                 
@@ -183,7 +183,7 @@ async function doPaymentInitiation(token, accountNumber, accountName, amount, cu
         const json = await response.json();
         console.log(json);
         console.log("paymentId", json.Data.ConsentId);
-        return json.Data.consentId;
+        return json.Data.ConsentId;
     } catch (error) {
         console.error(error.message);
     }

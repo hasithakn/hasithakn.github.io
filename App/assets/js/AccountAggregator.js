@@ -27,22 +27,21 @@ async function doAccount() {
 
 }
 
-window.addEventListener('load', function(event) {
-        console.log("event", event);
-        console.log("Fetch event for ", event.request.url);
-        if (event.request.url.includes('/xs2a/v1/callback')) {
-            // Intercept and handle the request for '/specific-page'
-            event.respondWith(
-                fetch(event.request).then(response => {
-                    // Modify the response if needed
-                    console.log("Intercepted request to /xs2a/v1/callback");
-                    return response;
-                })
-            );
-        } else {
-            event.respondWith(fetch(event.request)); // Pass through other requests
-        }
-    });
+// This runs on the callback page
+(function() {
+    if (window.location.hash && window.location.pathname === '/ob/v1/callback/') {
+        // Remove the leading '#' and split into key-value pairs
+        const fragment = window.location.hash.substring(1);
+        const baseUrl = window.location.origin + window.location.pathname;
+        let query = window.location.search;
+        // If there are already query params, append with '&'
+        const newQuery = query
+            ? query + '&' + fragment
+            : '?' + fragment;
+        // Redirect to the same path with fragment as query params
+        window.location.replace(baseUrl + newQuery);
+    }
+})();
 
 async function doPayment() {
     console.log("doPayment");

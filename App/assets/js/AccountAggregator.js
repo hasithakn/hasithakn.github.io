@@ -172,7 +172,7 @@ async function getAccAuthURL(consentId) {
                 'consentID': consentId,
                 'clientID': 'J8KGGr7P8sPF8FU801wbfpLd0EUa',
                 'redirectUrl': 'http://localhost:9090/ob/v1/callback',
-                'scope': 'ais:' + consentId,
+                'scope': 'acocunts openid',
             },
         });
         if (!response.ok) {
@@ -196,7 +196,7 @@ async function getPaymentAuthURL(consentId) {
                 'consentID': consentId,
                 'clientID': 'J8KGGr7P8sPF8FU801wbfpLd0EUa',
                 'redirectUrl': 'http://localhost:9090/ob/v1/callback',
-                'scope': 'pis:' + consentId,
+                'scope': 'payments openid',
             },
         });
         if (!response.ok) {

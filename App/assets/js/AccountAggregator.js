@@ -29,16 +29,21 @@ async function doAccount() {
 
 // This runs on the callback page
 (function() {
+    console.log("Callback page loaded");
     if (window.location.hash && window.location.pathname === '/ob/v1/callback/') {
         // Remove the leading '#' and split into key-value pairs
         const fragment = window.location.hash.substring(1);
         const baseUrl = window.location.origin + window.location.pathname;
         let query = window.location.search;
+        console.log("baseUrl", baseUrl);
+        console.log("query", query);
         // If there are already query params, append with '&'
         const newQuery = query
             ? query + '&' + fragment
             : '?' + fragment;
         // Redirect to the same path with fragment as query params
+        
+        console.log("newQuery", newQuery);
         window.location.replace(baseUrl + newQuery);
     }
 })();

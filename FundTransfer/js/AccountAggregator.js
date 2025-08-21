@@ -13,7 +13,7 @@ function getParameterByName(name, url) {
 
 async function doAccount() {
     console.log("doAccount");
-    const apiUrl = 'http://localhost:9090/xs2a/v1/appToken?clientId=PSDGB-OB-Unknown0015800001HQQrZAAX&redirect_uri=http://localhost:9090/xs2a/v1/callback&scopes=accounts openid';
+    const apiUrl = 'http://localhost:9090/xs2a/v1/appToken?clientId=J8KGGr7P8sPF8FU801wbfpLd0EUa&redirect_uri=http://localhost:9090/xs2a/v1/callback&scopes=accounts openid';
 
     const token = await getAccAppToken(apiUrl);
     console.log("token", token);
@@ -29,7 +29,7 @@ async function doAccount() {
 
 async function doPayment(bank, accountNumber, accountName, amount, currency) {
     console.log("doPayment");
-    const apiUrl = 'http://localhost:9090/xs2a/v1/appToken?clientId=PSDGB-OB-Unknown0015800001HQQrZAAX&redirect_uri=http://localhost:9090/xs2a/v1/callback&scopes=payments openid';
+    const apiUrl = 'http://localhost:9090/xs2a/v1/appToken?clientId=J8KGGr7P8sPF8FU801wbfpLd0EUa&redirect_uri=http://localhost:9090/xs2a/v1/callback&scopes=payments openid';
 
     const token = await getAccAppToken(apiUrl);
     console.log("token", token);
@@ -166,7 +166,7 @@ async function getAccAuthURL(consentId) {
         const response = await fetch("http://localhost:9090/xs2a/v1/authorize", {
             headers: {
                 'consentID': consentId,
-                'clientID': 'PSDGB-OB-Unknown0015800001HQQrZAAX',
+                'clientID': 'J8KGGr7P8sPF8FU801wbfpLd0EUa',
                 'redirectUrl': 'http://localhost:9090/xs2a/v1/callback',
                 'scope': 'ais:' + consentId,
             },
@@ -190,7 +190,7 @@ async function getPaymentAuthURL(consentId) {
         const response = await fetch("http://localhost:9090/xs2a/v1/authorize", {
             headers: {
                 'consentID': consentId,
-                'clientID': 'PSDGB-OB-Unknown0015800001HQQrZAAX',
+                'clientID': 'J8KGGr7P8sPF8FU801wbfpLd0EUa',
                 'redirectUrl': 'http://localhost:9090/xs2a/v1/callback',
                 'scope': 'pis:' + consentId,
             },

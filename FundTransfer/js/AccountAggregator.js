@@ -130,7 +130,7 @@ async function doPaymentInitiation(token, accountNumber, accountName, amount, cu
                 "DebtorAccount": {
                     "SchemeName": "UK.OBIE.SortCodeAccountNumber",
                     "Identification": "30080012343456",
-                    "Name": "John Deo",
+                    "Name": "John Doe",
                     "SecondaryIdentification": "003"
                 },
                 "CreditorAccount":{ 

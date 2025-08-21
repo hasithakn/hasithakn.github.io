@@ -110,9 +110,9 @@ async function doAccInitiation(token) {
 
         const json = await response.json();
         console.log(json);
-        console.log("consentId", json.consentId);
-        localStorage.setItem("accConsentId", json.consentId);
-        return json.consentId;
+        console.log("consentId", json.Data.ConsentId);
+        localStorage.setItem("accConsentId", json.Data.ConsentId);
+        return json.Data.ConsentId;
     } catch (error) {
         console.error(error.message);
     }

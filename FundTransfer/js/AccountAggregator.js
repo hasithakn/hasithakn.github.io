@@ -116,20 +116,53 @@ async function doPaymentInitiation(token, accountNumber, accountName, amount, cu
     console.log(amount);
     console.log(currency);
 
-    const body = {
-        instructedAmount: {
-            currency: currency,
-            amount: amount.toString()
+    const body = { 
+        "Data":{ 
+            "ReadRefundAccount" : "Yes",
+            "Initiation":{ 
+                "InstructionIdentification":"ACME412",
+                "EndToEndIdentification":"FRESCO.21302.GFX.20",
+                "LocalInstrument": "UK.OBIE.BACS",
+                "InstructedAmount":{ 
+                    "Amount":"300.65",
+                    "Currency":"GBP"
+                },
+                "DebtorAccount": {
+                    "SchemeName": "UK.OBIE.SortCodeAccountNumber",
+                    "Identification": "30080012343456",
+                    "Name": "Andrea Smith",
+                    "SecondaryIdentification": "003"
+                },
+                "CreditorAccount":{ 
+                    "SchemeName":"UK.OBIE.SortCodeAccountNumber",
+                    "Identification":"08080021325698",
+                    "Name":"ACME Inc",
+                    "SecondaryIdentification":"0002"
+                },
+                
+                "RemittanceInformation":{ 
+                    "Reference":"FRESCO-101",
+                    "Unstructured":["Internal ops code 5120101"]
+                }
+            }
         },
-        debtorAccount: {
-            iban: "DE12345678901234567890",
-            currency: "USD"
-        },
-        creditorName: accountName,
-        creditorAccount: {
-            iban: accountNumber.toString()
-        },
-        remittanceInformationUnstructured: "Ref Number Merchant"
+        "Risk":{
+            "PaymentContextCode":"BillingGoodsAndServicesInAdvance",
+            "MerchantCategoryCode":"5967",
+            "MerchantCustomerIdentification":"053598653254",
+            "DeliveryAddress":{
+                "AddressLine":[
+                    "Flat 7",
+                    "Acacia Lodge"
+                ],
+                "StreetName":"Acacia Avenue",
+                "BuildingNumber":"27",
+                "PostCode":"GU31 2ZZ",
+                "TownName":"Sparsholt",
+                "CountrySubDivision":"Wessex",
+                "Country":"UK"
+            }
+        }
     }
     console.log("doPaymentInitiation body ", body);
 
@@ -140,9 +173,7 @@ async function doPaymentInitiation(token, accountNumber, accountName, amount, cu
             headers: {
                 'token': token,
                 'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'paymentType': 'payments',
-                'paymentProduct': 'sepa-credit-transfers'
+                'Content-Type': 'application/json'
             }
         });
         if (!response.ok) {

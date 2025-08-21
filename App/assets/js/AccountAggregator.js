@@ -161,22 +161,22 @@ async function doPaymentInitiation(token) {
             }
         },
         "Risk":{
-        "PaymentContextCode":"BillingGoodsAndServicesInAdvance",
-        "MerchantCategoryCode":"5967",
-        "MerchantCustomerIdentification":"053598653254",
-        "DeliveryAddress":{
-            "AddressLine":[
-                "Flat 7",
-                "Acacia Lodge"
-            ],
-            "StreetName":"Acacia Avenue",
-            "BuildingNumber":"27",
-            "PostCode":"GU31 2ZZ",
-            "TownName":"Sparsholt",
-            "CountrySubDivision":"Wessex",
-            "Country":"UK"
+            "PaymentContextCode":"BillingGoodsAndServicesInAdvance",
+            "MerchantCategoryCode":"5967",
+            "MerchantCustomerIdentification":"053598653254",
+            "DeliveryAddress":{
+                "AddressLine":[
+                    "Flat 7",
+                    "Acacia Lodge"
+                ],
+                "StreetName":"Acacia Avenue",
+                "BuildingNumber":"27",
+                "PostCode":"GU31 2ZZ",
+                "TownName":"Sparsholt",
+                "CountrySubDivision":"Wessex",
+                "Country":"UK"
+            }
         }
-    }
     }
     console.log("doPaymentInitiation body ", body);
 

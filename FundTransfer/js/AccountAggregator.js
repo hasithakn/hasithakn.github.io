@@ -13,7 +13,7 @@ function getParameterByName(name, url) {
 
 async function doAccount() {
     console.log("doAccount");
-    const apiUrl = 'http://localhost:9090/ob/v1/appToken?clientId=PSDGB-OB-Unknown0015800001HQQrZAAX&redirect_uri=http://localhost:9090/ob/v1/callback&scopes=accounts openid';
+    const apiUrl = 'http://localhost:9090/xs2a/v1/appToken?clientId=PSDGB-OB-Unknown0015800001HQQrZAAX&redirect_uri=http://localhost:9090/xs2a/v1/callback&scopes=accounts openid';
 
     const token = await getAccAppToken(apiUrl);
     console.log("token", token);
@@ -29,7 +29,7 @@ async function doAccount() {
 
 async function doPayment(bank, accountNumber, accountName, amount, currency) {
     console.log("doPayment");
-    const apiUrl = 'http://localhost:9090/ob/v1/appToken?clientId=PSDGB-OB-Unknown0015800001HQQrZAAX&redirect_uri=http://localhost:9090/ob/v1/callback&scopes=payments openid';
+    const apiUrl = 'http://localhost:9090/xs2a/v1/appToken?clientId=PSDGB-OB-Unknown0015800001HQQrZAAX&redirect_uri=http://localhost:9090/xs2a/v1/callback&scopes=payments openid';
 
     const token = await getAccAppToken(apiUrl);
     console.log("token", token);
@@ -85,7 +85,7 @@ async function doAccInitiation(token) {
     console.log("doAccInitiation body ", body);
 
     try {
-        const response = await fetch("http://localhost:9090/ob/v1/consents", {
+        const response = await fetch("http://localhost:9090/xs2a/v1/consents", {
             method: "POST",
             body: JSON.stringify(body),
             headers: {
@@ -134,7 +134,7 @@ async function doPaymentInitiation(token, accountNumber, accountName, amount, cu
     console.log("doPaymentInitiation body ", body);
 
     try {
-        const response = await fetch("http://localhost:9090/ob/v1/payments", {
+        const response = await fetch("http://localhost:9090/xs2a/v1/payments", {
             method: "POST",
             body: JSON.stringify(body),
             headers: {
@@ -163,11 +163,11 @@ async function getAccAuthURL(consentId) {
     console.log("getAuthURL");
 
     try {
-        const response = await fetch("http://localhost:9090/ob/v1/authorize", {
+        const response = await fetch("http://localhost:9090/xs2a/v1/authorize", {
             headers: {
                 'consentID': consentId,
                 'clientID': 'PSDGB-OB-Unknown0015800001HQQrZAAX',
-                'redirectUrl': 'http://localhost:9090/ob/v1/callback',
+                'redirectUrl': 'http://localhost:9090/xs2a/v1/callback',
                 'scope': 'ais:' + consentId,
             },
         });
@@ -187,11 +187,11 @@ async function getPaymentAuthURL(consentId) {
     console.log("getAuthURL");
 
     try {
-        const response = await fetch("http://localhost:9090/ob/v1/authorize", {
+        const response = await fetch("http://localhost:9090/xs2a/v1/authorize", {
             headers: {
                 'consentID': consentId,
                 'clientID': 'PSDGB-OB-Unknown0015800001HQQrZAAX',
-                'redirectUrl': 'http://localhost:9090/ob/v1/callback',
+                'redirectUrl': 'http://localhost:9090/xs2a/v1/callback',
                 'scope': 'pis:' + consentId,
             },
         });
@@ -211,7 +211,7 @@ async function getPaymentDetails(consentId, token) {
     console.log("getPaymentDetails");
 
     try {
-        const response = await fetch("http://localhost:9090/ob/v1/accounts", {
+        const response = await fetch("http://localhost:9090/xs2a/v1/accounts", {
             headers: {
                 'consentId': consentId,
                 'token': token

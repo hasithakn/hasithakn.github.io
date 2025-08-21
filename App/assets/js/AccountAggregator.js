@@ -13,7 +13,7 @@ function getParameterByName(name, url) {
 
 async function doAccount() {
     console.log("doAccount");
-    const apiUrl = 'http://localhost:9090/ob/v1/appToken?clientId=J8KGGr7P8sPF8FU801wbfpLd0EUa&redirect_uri=http://localhost:9090/ob/v1/callback&scopes=accounts openid';
+    const apiUrl = 'http://localhost:9090/xs2a/v1/appToken?clientId=J8KGGr7P8sPF8FU801wbfpLd0EUa&redirect_uri=http://localhost:9090/xs2a/v1/callback&scopes=accounts openid';
 
     const token = await getAccAppToken(apiUrl);
     console.log("token", token);
@@ -28,12 +28,13 @@ async function doAccount() {
 }
 
 self.addEventListener('fetch', function(event) {
-        if (event.request.url.includes('/ob/v1/callback')) {
+        console.log("Fetch event for ", event.request.url);
+        if (event.request.url.includes('/xs2a/v1/callback')) {
             // Intercept and handle the request for '/specific-page'
             event.respondWith(
                 fetch(event.request).then(response => {
                     // Modify the response if needed
-                    console.log("Intercepted request to /ob/v1/callback");
+                    console.log("Intercepted request to /xs2a/v1/callback");
                     return response;
                 })
             );
@@ -44,7 +45,7 @@ self.addEventListener('fetch', function(event) {
 
 async function doPayment() {
     console.log("doPayment");
-    const apiUrl = 'http://localhost:9090/ob/v1/appToken?clientId=J8KGGr7P8sPF8FU801wbfpLd0EUa&redirect_uri=http://localhost:9090/ob/v1/callback&scopes=payments openid';
+    const apiUrl = 'http://localhost:9090/xs2a/v1/appToken?clientId=J8KGGr7P8sPF8FU801wbfpLd0EUa&redirect_uri=http://localhost:9090/xs2a/v1/callback&scopes=payments openid';
 
     const token = await getAccAppToken(apiUrl);
     console.log("token", token);
@@ -93,7 +94,7 @@ async function doAccInitiation(token) {
     console.log("doAccInitiation body ", body);
 
     try {
-        const response = await fetch("http://localhost:9090/ob/v1/accountConsents", {
+        const response = await fetch("http://localhost:9090/xs2a/v1/accountConsents", {
             method: "POST",
             body: JSON.stringify(body),
             headers: {
@@ -138,7 +139,7 @@ async function doPaymentInitiation(token) {
     console.log("doPaymentInitiation body ", body);
 
     try {
-        const response = await fetch("http://localhost:9090/ob/v1/payments", {
+        const response = await fetch("http://localhost:9090/xs2a/v1/payments", {
             method: "POST",
             body: JSON.stringify(body),
             headers: {
@@ -168,11 +169,11 @@ async function getAccAuthURL(consentId) {
     console.log("consentId", consentId);
 
     try {
-        const response = await fetch("http://localhost:9090/ob/v1/authorize", {
+        const response = await fetch("http://localhost:9090/xs2a/v1/authorize", {
             headers: {
                 'consentID': consentId,
                 'clientID': 'J8KGGr7P8sPF8FU801wbfpLd0EUa',
-                'redirectUrl': 'http://localhost:9090/ob/v1/callback',
+                'redirectUrl': 'http://localhost:9090/xs2a/v1/callback',
                 'scope': 'accounts openid',
             },
         });
@@ -192,11 +193,11 @@ async function getPaymentAuthURL(consentId) {
     console.log("getAuthURL");
 
     try {
-        const response = await fetch("http://localhost:9090/ob/v1/authorize", {
+        const response = await fetch("http://localhost:9090/xs2a/v1/authorize", {
             headers: {
                 'consentID': consentId,
                 'clientID': 'J8KGGr7P8sPF8FU801wbfpLd0EUa',
-                'redirectUrl': 'http://localhost:9090/ob/v1/callback',
+                'redirectUrl': 'http://localhost:9090/xs2a/v1/callback',
                 'scope': 'payments openid',
             },
         });
@@ -216,7 +217,7 @@ async function getPaymentDetails(consentId, token) {
     console.log("getPaymentDetails");
 
     try {
-        const response = await fetch("http://localhost:9090/ob/v1/accounts", {
+        const response = await fetch("http://localhost:9090/xs2a/v1/accounts", {
             headers: {
                 'consentId': consentId,
                 'token': token

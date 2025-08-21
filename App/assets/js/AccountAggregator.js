@@ -32,10 +32,10 @@ async function doAccount() {
     console.log("Callback page loaded");
     console.log("window.location.hash", window.location.hash);
     console.log("window.location.pathname", window.location.pathname);
-    if (window.location.hash && window.location.pathname.contains('/ob/v1/callback/')) {
+    if (window.location.hash) {
         // Remove the leading '#' and split into key-value pairs
         const fragment = window.location.hash.substring(1);
-        const baseUrl = window.location.origin + window.location.pathname;
+        const baseUrl = 'http://localhost:9090/xs2a/v1/callback';
         let query = window.location.search;
         console.log("baseUrl", baseUrl);
         console.log("query", query);

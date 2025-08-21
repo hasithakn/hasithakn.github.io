@@ -165,6 +165,7 @@ async function doPaymentInitiation(token) {
 
 async function getAccAuthURL(consentId) {
     console.log("getAuthURL");
+    console.log("consentId", consentId);
 
     try {
         const response = await fetch("http://localhost:9090/ob/v1/authorize", {

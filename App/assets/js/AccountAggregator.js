@@ -30,7 +30,7 @@ async function doAccount() {
 // This runs on the callback page
 (function() {
     console.log("Callback page loaded");
-    if (window.location.hash && window.location.pathname === '/ob/v1/callback/') {
+    if (window.location.hash && window.location.pathname.contains('/ob/v1/callback/')) {
         // Remove the leading '#' and split into key-value pairs
         const fragment = window.location.hash.substring(1);
         const baseUrl = window.location.origin + window.location.pathname;
@@ -45,6 +45,8 @@ async function doAccount() {
         
         console.log("newQuery", newQuery);
         window.location.replace(baseUrl + newQuery);
+    } else {
+
     }
 })();
 
